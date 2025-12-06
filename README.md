@@ -1,36 +1,34 @@
-**Event Booking System – MERN Stack (with Stripe Payments)
+# **Event Booking System – MERN Stack (with Stripe Payments)**
 
-Complete README & Workflow Documentation**
+## **Complete README & Workflow Documentation**
 
-1. Project Overview
+---
 
-This project is a full-stack Event Booking System built using the MERN stack, integrating secure Stripe payments.
+## **1. Project Overview**
 
-The system allows users to:
+This project is a full-stack **Event Booking System** built using the **MERN stack**, integrated with **secure Stripe payments**.
 
-Browse available events
+### **The system allows users to:**
 
-Register/login
+* Browse available events
+* Register / Login
+* Book events
+* Make secure online payments using Stripe
+* View booking details
 
-Book events
+### **Technologies Used:**
 
-Make secure online payments using Stripe
+* **MongoDB** – Database
+* **Express.js** – Backend API framework
+* **React.js** – Frontend interface
+* **Node.js** – Backend runtime environment
+* **Stripe** – Payment gateway
 
-View booking details
+---
 
-Technologies used:
+## **2. Folder Structure**
 
-MongoDB – Database
-
-Express.js – Backend API framework
-
-React.js – Frontend interface
-
-Node.js – Backend runtime environment
-
-Stripe – Payment gateway
-
-2. Folder Structure
+```
 EVENT_BOOKING_SYSTEM/
 │
 ├── backend/
@@ -48,85 +46,97 @@ EVENT_BOOKING_SYSTEM/
     ├── public/
     ├── package.json
     └── node_modules/
+```
 
-3. Backend (Node.js + Express.js)
-Responsibilities:
+---
 
-Handles all API routes (auth, events, bookings)
+## **3. Backend (Node.js + Express.js)**
 
-Handles real-time Stripe payment processing
+### **Responsibilities**
 
-Communicates with MongoDB using Mongoose
+* Handles all API routes (auth, events, bookings)
+* Handles real-time Stripe payment processing
+* Communicates with MongoDB using Mongoose
+* Manages authentication using JWT
+* Validates input and protects private routes
 
-Manages authentication using JWT
+### **Start Backend**
 
-Validates user input and protects private routes
-
-Start Backend:
+```bash
 cd backend
 npm install
 npm start
+```
 
-Backend .env File (REQUIRED):
+### **Backend `.env` file (Required)**
+
+```env
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=a_strong_secure_random_key
 PORT=5000
 
 # Stripe Keys
 STRIPE_SECRET_KEY=sk_test_your_secret_key
-STRIPE_WEBHOOK_SECRET=your_webhook_secret    # only if using webhooks
+STRIPE_WEBHOOK_SECRET=your_webhook_secret
+```
 
-4. Frontend (React.js)
-Responsibilities:
+---
 
-Displays event listings and booking UI
+## **4. Frontend (React.js)**
 
-Sends requests to backend API
+### **Responsibilities**
 
-Integrates Stripe Checkout frontend
+* Displays event listings and booking UI
+* Sends requests to backend API
+* Integrates Stripe Checkout
+* Stores authentication tokens
+* Displays success/error messages
 
-Stores authentication tokens
+### **Start Frontend**
 
-Shows success/error messages
-
-Start Frontend:
+```bash
 cd frontend
 npm install
 npm start
-
+```
 
 Frontend runs on:
 
+```
 http://localhost:3000
+```
 
-5. How MERN + Stripe Workflow Works (Event Booking System)
-1. User opens the React application
+---
 
-They can:
+## **5. How MERN + Stripe Workflow Works (Event Booking System)**
 
-View upcoming events
+### **1. User opens the React application**
 
-Login / Register
+Users can:
 
-Proceed to book an event
+* View events
+* Login/Register
+* Start booking an event
 
-2. User selects an event and clicks “Book Now”
+### **2. User selects an event and clicks “Book Now”**
 
 React sends a request:
 
+```
 POST /api/bookings/create-checkout-session
+```
 
-3. Express backend receives booking request
+### **3. Express backend receives booking request**
 
 Backend:
 
-Verifies user token
+* Verifies user authentication
+* Checks event availability
+* Creates a Stripe Checkout Session
 
-Verifies event availability
+### **4. Backend contacts Stripe**
 
-Creates a Stripe Checkout Session
-
-4. Backend contacts Stripe
+```js
 const session = await stripe.checkout.sessions.create({
   payment_method_types: ["card"],
   line_items: [...],
@@ -134,142 +144,145 @@ const session = await stripe.checkout.sessions.create({
   success_url: "...",
   cancel_url: "...",
 });
+```
 
-5. Stripe returns a secure payment URL
+### **5. Stripe returns a secure payment URL**
 
-Backend returns the URL to React:
+Backend returns:
 
+```json
 { "url": "https://checkout.stripe.com/..." }
+```
 
-6. React redirects user to Stripe Checkout
+### **6. React redirects user to Stripe Checkout**
 
-User enters card details and completes payment.
+User enters card details & completes payment.
 
-7. Stripe confirms payment
+### **7. Stripe confirms payment**
 
-Sends confirmation to backend (webhook or success URL)
+Stripe sends confirmation to backend via:
 
-Backend creates booking record in MongoDB
+* Webhooks, or
+* Success URL
 
-8. MongoDB stores booking data
+Backend then stores booking in MongoDB.
 
-Stored data:
+### **8. MongoDB stores booking data**
 
-User ID
+Stored information:
 
-Event ID
+* User ID
+* Event ID
+* Payment ID
+* Payment status ("Paid")
+* Timestamp
 
-Payment ID
+### **9. React updates user dashboard**
 
-Payment status (“paid”)
+User sees:
 
-Timestamp
+* Booking confirmation
+* Event details
+* Payment status
 
-9. React updates user dashboard
+---
 
-Shows:
+## **6. Connections Between Frontend, Backend & MongoDB**
 
-Booking confirmation
-
-Event details
-
-Payment status
-
-6. Connections Between Frontend, Backend & MongoDB
-React → Express
+### **React → Express**
 
 Used for:
 
-Login / Register
+* Login / Register
+* Fetching events
+* Creating checkout session
+* Saving bookings
 
-Getting list of events
+Example:
 
-Creating checkout session
-
-Storing booking details
-
-Uses:
-
+```js
 axios.post("http://localhost:5000/api/auth/login", data);
+```
 
-Express → Stripe
+### **Express → Stripe**
 
-Creates payment sessions
+* Creates checkout sessions
+* Validates payments
+* Handles webhook responses
 
-Validates payment
+### **Express → MongoDB**
 
-Handles webhook events
+Using Mongoose for:
 
-Express → MongoDB
+* User model
+* Event model
+* Booking model
 
-Uses Mongoose:
+### **MongoDB → Express → React**
 
-User model
+* Returns event lists
+* Returns booking details
+* Sends payment status
 
-Event model
+---
 
-Booking model
+## **7. Event Booking Workflow (Start to End)**
 
-MongoDB → Express → React
+### **Step 1:** User opens the website -> React loads events
 
-Returns event data
+### **Step 2:** User logs in / registers -> Backend returns JWT
 
-Returns booking history
+### **Step 3:** User selects an event -> Clicks **Book Now**
 
-Confirms payment
+### **Step 4:** Backend creates Stripe Session -> Returns URL
 
-7. Event Booking Workflow (Start to End)
-Step 1: User visits website
+### **Step 5:** User completes payment on Stripe
 
-React loads events from backend.
+### **Step 6:** Backend saves booking & marks as **Paid**
 
-Step 2: User logs in / registers
+### **Step 7:** React shows confirmation:
 
-Backend returns JWT.
-
-Step 3: User selects event
-
-Clicks Book Now.
-
-Step 4: Backend creates Stripe session
-
-Stripe generates checkout page.
-
-Step 5: User makes payment
-
-Stripe validates card & processes payment.
-
-Step 6: Payment successful
-
-Backend creates booking entry and marks as "Paid".
-
-Step 7: React shows confirmation message
-
-User sees:
 ✔ Booking details
 ✔ Payment status
 ✔ Event information
 
-8. MongoDB Connection (Compass or Atlas)
+---
 
-In config/db.js or server.js:
+## **8. MongoDB Connection (Compass or Atlas)**
 
+Example code in `config/db.js`:
+
+```js
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
+```
 
+### **Atlas Example**
 
-Atlas connection example:
-
+```env
 MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/eventsDB
+```
 
-9. Scripts
-Backend
+---
+
+## **9. Scripts**
+
+### **Backend**
+
+```bash
 npm start
+```
 
-Frontend
+### **Frontend**
+
+```bash
 npm start
+```
 
-10. Conclusion
+---
+
+## **10. Conclusion**
+
 The Event Booking System is a complete MERN project that provides secure user authentication, event listing and booking features, and seamless Stripe payment integration. It ensures smooth data flow between the frontend, backend, and MongoDB, all built on a clean and scalable architecture. The system is designed for fast performance, secure payments, and a professional workflow, making the overall booking experience reliable and efficient for users.
