@@ -1,7 +1,4 @@
 # **Event Booking System – MERN Stack**
-
-## **Complete README & Workflow Documentation**
-
 ---
 
 ## **1. Project Overview**
