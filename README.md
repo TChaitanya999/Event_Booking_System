@@ -53,7 +53,6 @@ EVENT_BOOKING_SYSTEM/
 ### **Responsibilities**
 
 * Handles all API routes (auth, events, bookings)
-* Handles real-time Stripe payment processing
 * Communicates with MongoDB using Mongoose
 * Manages authentication using JWT
 * Validates input and protects private routes
@@ -72,7 +71,6 @@ npm run dev
 
 * Displays event listings and booking UI
 * Sends requests to backend API
-* Integrates Stripe Checkout
 * Stores authentication tokens
 * Displays success/error messages
 
@@ -108,8 +106,6 @@ Backend:
 
 * Verifies user authentication
 * Checks event availability
-* Creates a Stripe Checkout Session
-
 
 ### **3. MongoDB stores booking data**
 
@@ -182,4 +178,4 @@ npm start
 
 ## **10. Conclusion**
 
-The Event Booking System is a complete MERN project that provides secure user authentication, event listing and booking features, and seamless Stripe payment integration. It ensures smooth data flow between the frontend, backend, and MongoDB, all built on a clean and scalable architecture. The system is designed for fast performance, secure payments, and a professional workflow, making the overall booking experience reliable and efficient for users.
+The Event Booking System is a complete MERN project that provides secure user authentication, event listing and booking features. It ensures smooth data flow between the frontend, backend, and MongoDB, all built on a clean and scalable architecture. The system is designed for fast performance, secure payments, and a professional workflow, making the overall booking experience reliable and efficient for users.
