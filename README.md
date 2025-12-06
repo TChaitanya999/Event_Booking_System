@@ -21,7 +21,6 @@ This project is a full-stack ** Event Booking System ** built using the ** MERN 
 * **Express.js** – Backend API framework
 * **React.js** – Frontend interface
 * **Node.js** – Backend runtime environment
-* **Stripe** – Payment gateway
 
 ---
 
