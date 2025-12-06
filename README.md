@@ -102,7 +102,7 @@ Users can:
 * Login/Register
 * Start booking an event
 
-### **3. Express backend receives booking request**
+### **2. Express backend receives booking request**
 
 Backend:
 
@@ -111,7 +111,7 @@ Backend:
 * Creates a Stripe Checkout Session
 
 
-### **8. MongoDB stores booking data**
+### **3. MongoDB stores booking data**
 
 Stored information:
 
@@ -121,7 +121,7 @@ Stored information:
 * Payment status ("Paid")
 * Timestamp
 
-### **9. React updates user dashboard**
+### **4. React updates user dashboard**
 
 User sees:
 
