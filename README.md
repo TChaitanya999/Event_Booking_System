@@ -1,4 +1,4 @@
-# **Event Booking System – MERN Stack (with Stripe Payments)**
+# ** Event Booking System – MERN Stack **
 
 ## **Complete README & Workflow Documentation**
 
