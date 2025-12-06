@@ -170,6 +170,11 @@ npm start
 
 ---
 
-## **9. Conclusion**
+## **9. Screenshots**
+
+<img width="1854" height="981" alt="Screenshot 2025-12-06 215817" src="https://github.com/user-attachments/assets/49aab2ef-bb09-46cf-9966-155664f167fd" />
+
+
+## **10. Conclusion**
 
 The Event Booking System is a complete MERN project that provides secure user authentication, event listing and booking features, and seamless Stripe payment integration. It ensures smooth data flow between the frontend, backend, and MongoDB, all built on a clean and scalable architecture. The system is designed for fast performance, secure payments, and a professional workflow, making the overall booking experience reliable and efficient for users.
