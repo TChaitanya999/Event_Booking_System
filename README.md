@@ -63,7 +63,7 @@ EVENT_BOOKING_SYSTEM/
 ```bash
 cd backend
 npm install
-npm start
+npm run dev
 ```
 
 ## **4. Frontend (React.js)**
