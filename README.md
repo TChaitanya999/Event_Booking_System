@@ -53,7 +53,8 @@ EVENT_BOOKING_SYSTEM/
 * Communicates with MongoDB using Mongoose
 * Manages authentication using JWT
 * Validates input and protects private routes
-
+**Modification**
+  change the backend file name env.template to .env  and start the running commands below
 ### **Start Backend**
 
 ```bash
